@@ -5,17 +5,20 @@ using Models; // Assuming you have a Customer model
 using System.Threading.Tasks;
 using System.Linq;
 using static EcoPower_Logistics.Reopository.CustomersRepository;
+using ICustomerRepository = EcoPower_Logistics.Reopository.CustomersRepository.ICustomerRepository;
 
 namespace Controllers
 {
+
     [Authorize]
     public class CustomersController : Controller
     {
+
         private readonly ICustomerRepository _customerRepository;
 
-        public CustomersController(ICustomerRepository customerRepository)
+        public CustomersController(ICustomerRepository CustomerRepository)
         {
-            _customerRepository = customerRepository;
+            _customerRepository = CustomerRepository;
         }
 
         // GET: Customers
@@ -52,7 +55,7 @@ namespace Controllers
         // POST: Customers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,CustomerTitle,CustomerName,CustomerSurname,CellPhone")] CustomersRepository.Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerId,CustomerTitle,CustomerName,CustomerSurname,CellPhone")] EcoPower_Logistics.Reopository.CustomersRepository.Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +86,7 @@ namespace Controllers
         // POST: Customers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,CustomerTitle,CustomerName,CustomerSurname,CellPhone")] CustomersRepository.Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,CustomerTitle,CustomerName,CustomerSurname,CellPhone")] EcoPower_Logistics.Reopository.CustomersRepository.Customer customer)
         {
             if (id != customer.CustomerId)
             {

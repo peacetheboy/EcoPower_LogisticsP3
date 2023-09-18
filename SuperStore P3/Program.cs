@@ -3,12 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Data;
 using EcoPower_Logistics.Data;
 using EcoPower_Logistics.Reopository;
-using static EcoPower_Logistics.Reopository.CustomersRepository;
-using EcoPower_Logistics.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-services.AddScoped<CustomerRepository>();
-
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -21,26 +17,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
-var customerRepository = new CustomerRepository();
-
-// Example: Retrieve a customer by ID
-int customerIdToRetrieve = 1; // Replace with the actual customer ID
-var customer = customerRepository.GetCustomerById(customerIdToRetrieve);
-
-if (customer != null)
-{
-    Console.WriteLine($"Customer Name: {customer.CustomerName} {customer.CustomerSurname}");
-    Console.WriteLine($"Customer Email: {customer.CellPhone}");
-}
-else
-{
-    Console.WriteLine("Customer not found.");
-}
-
-// You can use other methods of the customerRepository as needed
-
-Console.ReadLine();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
