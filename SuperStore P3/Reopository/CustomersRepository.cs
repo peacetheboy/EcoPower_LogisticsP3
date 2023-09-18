@@ -16,6 +16,10 @@ namespace EcoPower_Logistics.Reopository
         public class CustomerContext : DbContext
         {
             public DbSet<Customer> Customers { get; set; } = null!;
+
+            public CustomerContext(DbContextOptions<CustomerContext> options) : base(options)
+            {
+            }
         }
 
         public interface ICustomerRepository
@@ -33,11 +37,7 @@ namespace EcoPower_Logistics.Reopository
 
             public CustomerRepository(CustomerContext context)
             {
-                _context = context;
-            }
-
-            public CustomerRepository()
-            {
+                _context = context ?? throw new ArgumentNullException(nameof(context));
             }
 
             public List<Customer> GetAllCustomers()
