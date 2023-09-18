@@ -4,8 +4,10 @@ using Data;
 using EcoPower_Logistics.Data;
 using EcoPower_Logistics.Reopository;
 using static EcoPower_Logistics.Reopository.CustomersRepository;
+using EcoPower_Logistics.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+services.AddScoped<CustomerRepository>();
 
 
 // Add services to the container.
