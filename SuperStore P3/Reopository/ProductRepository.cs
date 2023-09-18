@@ -7,61 +7,66 @@ using EcoPower_Logistics.Data;
 
 namespace EcoPower_Logistics.Reopository
 {
-    public class ProductRepository
+    public class Product
     {
-        protected readonly SuperStoreContext _context;
+        public int ProductId { get; set; }
+        public string ProductName { get; set; } = null!;
+        public string ProductDescription { get; set; } = null!;
+    }
 
-        // GET ALL: Products
-        public IEnumerable<Product> GetAll()
+    public class ProductContext : DbContext
+    {
+        public DbSet<Product> Products { get; set; } = null!;
+    }
+
+    public interface IProductRepository
+    {
+        List<Product> GetAllProducts();
+        Product GetProductById(int productId);
+        void AddProduct(Product product);
+        void UpdateProduct(Product product);
+        void DeleteProduct(int productId);
+    }
+
+    public class ProductRepository : IProductRepository
+    {
+        private readonly ProductContext _context;
+
+        public ProductRepository(ProductContext context)
+        {
+            _context = context;
+        }
+
+        public List<Product> GetAllProducts()
         {
             return _context.Products.ToList();
         }
 
-        // GET BY ID: Product
-        public Product GetById(int id)
+        public Product GetProductById(int productId)
         {
-            return _context.Products.Find(id);
+            return _context.Products.Find(productId);
         }
 
-        // CREATE: Product
-        public void Create(Product product)
+        public void AddProduct(Product product)
         {
-            if (product == null)
-            {
-                throw new ArgumentNullException(nameof(product));
-            }
-
             _context.Products.Add(product);
             _context.SaveChanges();
         }
 
-        // EDIT: Product
-        public void Edit(Product product)
+        public void UpdateProduct(Product product)
         {
-            if (product == null)
-            {
-                throw new ArgumentNullException(nameof(product));
-            }
-
             _context.Entry(product).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        // DELETE: Product by ID
-        public void Delete(int id)
+        public void DeleteProduct(int productId)
         {
-            var product = _context.Products.Find(id);
+            var product = _context.Products.Find(productId);
             if (product != null)
             {
                 _context.Products.Remove(product);
                 _context.SaveChanges();
             }
-        }
-
-        // CHECK IF PRODUCT EXISTS: by ID
-        public bool Exists(int id)
-        {
-            return _context.Products.Any(p => p.Id == id);
         }
     }
 
