@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Data;
 using Models;
 using EcoPower_Logistics.Data;
+using EcoPower_Logistics.Reopository;
 
 namespace Controllers
 {
@@ -85,6 +86,7 @@ namespace Controllers
             }
             return View(customer);
         }
+        
 
         // POST: Customers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -162,5 +164,6 @@ namespace Controllers
         {
             return (_context.Customers?.Any(e => e.CustomerId == id)).GetValueOrDefault();
         }
+
     }
 }
