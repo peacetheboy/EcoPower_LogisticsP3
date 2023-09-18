@@ -22,7 +22,6 @@ namespace Controllers
             _context = context;
         }
 
-        
         // GET: Orders
         public async Task<IActionResult> Index()
         {
@@ -48,7 +47,6 @@ namespace Controllers
 
             return View(order);
         }
-
 
         // GET: Orders/Create
         public IActionResult Create()
