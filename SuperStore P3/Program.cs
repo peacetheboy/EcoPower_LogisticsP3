@@ -17,7 +17,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddTransient<ICustomersRepository, CustomersRepository>();
+builder.Services.AddTransient<ICustomerRepository, CustomersRepository>();
 builder.Services.AddTransient<IOrderDetailsRepository, OrderDetailRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IOrdersRepository, OrdersRepository>();

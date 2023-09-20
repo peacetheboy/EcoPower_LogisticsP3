@@ -18,6 +18,3 @@ namespace EcoPower_Logistics.Reopository
         }
     }
 }
-
-
-
