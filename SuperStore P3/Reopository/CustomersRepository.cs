@@ -5,15 +5,20 @@ using static EcoPower_Logistics.Reopository.CustomersRepository;
 
 namespace EcoPower_Logistics.Reopository
 {
-    public class CustomersRepository : GenericRepository<Customer>, ICustomerRepository
+    public class CustomersRepository
     {
-        public CustomersRepository(SuperStoreContext context) : base(context)
+        protected readonly SuperStoreContext _context = new SuperStoreContext();
+
+        // GET ALL: Customers
+        public IEnumerable<Customer> GetAll()
         {
+            return _context.Customers.ToList();
         }
 
-        public Customer GetMostRecentCustomer()
-        {
-            return _context.Customers.OrderByDescending(Customer => Customer.CustomerId).FirstOrDefault();
-        }
+        // TO DO: Add ‘Get By Id’
+        // TO DO: Add ‘Create’
+        // TO DO: Add ‘Edit’
+        // TO DO: Add ‘Delete’
+        // TO DO: Add ‘Exists’
     }
 }

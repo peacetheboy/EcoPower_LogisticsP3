@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 using Data;
 using EcoPower_Logistics.Data;
+using EcoPower_Logistics.Reopository;
 
 namespace Controllers
 {
@@ -22,11 +23,14 @@ namespace Controllers
             _context = context;
         }
 
-        // GET: Orders
+        // GET: Order
         public async Task<IActionResult> Index()
         {
-            var superStoreContext = _context.Orders.Include(o => o.Customer);
-            return View(await superStoreContext.ToListAsync());
+            OrdersRepository OrdersRepository = new OrdersRepository();
+
+            var results = OrdersRepository.GetAll();
+
+            return View(results);
         }
 
         // GET: Orders/Details/5

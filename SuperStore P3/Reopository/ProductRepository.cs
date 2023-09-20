@@ -2,19 +2,25 @@
 using Microsoft.EntityFrameworkCore;
 using Models;
 using EcoPower_Logistics.Data;
-using static EcoPower_Logistics.Reopository. ProductRepository;
+using static EcoPower_Logistics.Reopository.ProductRepository;
 
 namespace EcoPower_Logistics.Reopository
 {
-    public class ProductRepository : GenericRepository<Product>, IProductRepository
+    public class ProductRepository
     {
-        public ProductRepository(SuperStoreContext context) : base(context)
+        protected readonly SuperStoreContext _context = new SuperStoreContext();
+
+        // GET ALL: Products
+        public IEnumerable<Product> GetAll()
         {
+            return _context.Products.ToList();
         }
 
-        public Product GetMostRecentProduct()
-        {
-            return _context.Products.OrderByDescending(Product => Product.ProductId).FirstOrDefault();
-        }
+        // TO DO: Add ‘Get By Id’
+        // TO DO: Add ‘Create’
+        // TO DO: Add ‘Edit’
+        // TO DO: Add ‘Delete’
+        // TO DO: Add ‘Exists’
     }
+
 }
