@@ -5,7 +5,7 @@ using static EcoPower_Logistics.Reopository.CustomersRepository;
 
 namespace EcoPower_Logistics.Reopository
 {
-    public class CustomersRepository : GenericRepository<Product>, ICustomerRepository
+    public class CustomersRepository : GenericRepository<Customer>, ICustomerRepository
     {
         public CustomersRepository(SuperStoreContext context) : base(context)
         {

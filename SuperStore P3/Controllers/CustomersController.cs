@@ -1,40 +1,45 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using EcoPower_Logistics.Reopository; // Assuming this is where your CustomerRepository is located
-using Models; // Assuming you have a Customer model
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using static EcoPower_Logistics.Reopository.CustomersRepository;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Data;
+using Models;
+using EcoPower_Logistics.Data;
 
 namespace Controllers
 {
     [Authorize]
     public class CustomersController : Controller
     {
-        private readonly ICustomerRepository _customerRepository;
+        private readonly SuperStoreContext _context;
 
-        public CustomersController(ICustomerRepository customerRepository)
+        public CustomersController(SuperStoreContext context)
         {
-            _customerRepository = customerRepository;
+            _context = context;
         }
 
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            var customers = _customerRepository.GetAllCustomers();
-            return View(customers);
+            return _context.Customers != null ?
+                        View(await _context.Customers.ToListAsync()) :
+                        Problem("Entity set 'SuperStoreContext.Customers'  is null.");
         }
 
         // GET: Customers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Customers == null)
             {
                 return NotFound();
             }
 
-            var customer = _customerRepository.GetCustomerById(id.Value);
-
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(m => m.CustomerId == id);
             if (customer == null)
             {
                 return NotFound();
@@ -50,13 +55,16 @@ namespace Controllers
         }
 
         // POST: Customers/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,CustomerTitle,CustomerName,CustomerSurname,CellPhone")] CustomersRepository.Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerId,CustomerTitle,CustomerName,CustomerSurname,CellPhone")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                _customerRepository.AddCustomer(customer);
+                _context.Add(customer);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(customer);
@@ -65,25 +73,25 @@ namespace Controllers
         // GET: Customers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Customers == null)
             {
                 return NotFound();
             }
 
-            var customer = _customerRepository.GetCustomerById(id.Value);
-
+            var customer = await _context.Customers.FindAsync(id);
             if (customer == null)
             {
                 return NotFound();
             }
-
             return View(customer);
         }
 
         // POST: Customers/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,CustomerTitle,CustomerName,CustomerSurname,CellPhone")] CustomersRepository.Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,CustomerTitle,CustomerName,CustomerSurname,CellPhone")] Customer customer)
         {
             if (id != customer.CustomerId)
             {
@@ -92,7 +100,22 @@ namespace Controllers
 
             if (ModelState.IsValid)
             {
-                _customerRepository.UpdateCustomer(customer);
+                try
+                {
+                    _context.Update(customer);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CustomerExists(customer.CustomerId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(customer);
@@ -101,13 +124,13 @@ namespace Controllers
         // GET: Customers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Customers == null)
             {
                 return NotFound();
             }
 
-            var customer = _customerRepository.GetCustomerById(id.Value);
-
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(m => m.CustomerId == id);
             if (customer == null)
             {
                 return NotFound();
@@ -121,15 +144,23 @@ namespace Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = _customerRepository.GetCustomerById(id);
-
+            if (_context.Customers == null)
+            {
+                return Problem("Entity set 'SuperStoreContext.Customers'  is null.");
+            }
+            var customer = await _context.Customers.FindAsync(id);
             if (customer != null)
             {
-                _customerRepository.DeleteCustomer(id);
-                return RedirectToAction(nameof(Index));
+                _context.Customers.Remove(customer);
             }
 
-            return NotFound();
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool CustomerExists(int id)
+        {
+            return (_context.Customers?.Any(e => e.CustomerId == id)).GetValueOrDefault();
         }
     }
 }
