@@ -56,6 +56,7 @@ namespace EcoPower_Logistics.Reopository
                 _context.SaveChanges();
             }
 
+
             public void UpdateCustomer(Customer customer)
             {
                 _context.Entry(customer).State = EntityState.Modified;

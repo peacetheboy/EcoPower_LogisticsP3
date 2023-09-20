@@ -41,7 +41,6 @@ namespace EcoPower_Logistics.Reopository
         {
             return _context.Products.ToList();
         }
-
         public Product GetProductById(int productId)
         {
             return _context.Products.Find(productId);
