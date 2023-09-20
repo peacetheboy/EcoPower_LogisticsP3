@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Data;
 using Models;
 using EcoPower_Logistics.Data;
+using EcoPower_Logistics.Reopository;
 
 namespace Controllers
 {
@@ -25,9 +26,12 @@ namespace Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            return _context.Customers != null ?
-                        View(await _context.Customers.ToListAsync()) :
-                        Problem("Entity set 'SuperStoreContext.Customers'  is null.");
+            CustomersRepository CustomersRepository = new CustomersRepository();
+
+            var results = CustomersRepository.GetAll();
+
+            return View(results);
+
         }
 
         // GET: Customers/Details/5
