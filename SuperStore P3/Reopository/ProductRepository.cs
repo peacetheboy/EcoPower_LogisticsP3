@@ -16,11 +16,51 @@ namespace EcoPower_Logistics.Reopository
             return _context.Products.ToList();
         }
 
-        // TO DO: Add ‘Get By Id’
-        // TO DO: Add ‘Create’
-        // TO DO: Add ‘Edit’
-        // TO DO: Add ‘Delete’
-        // TO DO: Add ‘Exists’
+        // TO DO: Add ‘Get By Id’ for Products
+        public Product GetById(int productId)
+        {
+            return _context.Products.Find(productId);
+        }
+
+        // TO DO: Add ‘Create’ for Products
+        public void Create(Product product)
+        {
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+
+            _context.Products.Add(product);
+            _context.SaveChanges();
+        }
+
+        // TO DO: Add ‘Edit’ for Products
+        public void Edit(Product product)
+        {
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+
+            _context.Entry(product).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
+        // TO DO: Add ‘Delete’ for Products
+        public void Delete(int productId)
+        {
+            var product = _context.Products.Find(productId);
+            if (product != null)
+            {
+                _context.Products.Remove(product);
+                _context.SaveChanges();
+            }
+        }
+
+        public bool Exists(int productId)
+        {
+            return _context.Products.Any(p => p.ProductId == productId);
+        }
     }
 
 }
