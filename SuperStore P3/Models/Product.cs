@@ -6,8 +6,6 @@ namespace Models
 {
     public partial class Product
     {
-        internal readonly int Id;
-
         public Product()
         {
             OrderDetails = new HashSet<OrderDetail>();

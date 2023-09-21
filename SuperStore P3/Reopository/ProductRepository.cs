@@ -19,7 +19,12 @@ namespace EcoPower_Logistics.Reopository
         // TO DO: Add ‘Get By Id’ for Products
         public Product GetById(int productId)
         {
-            return _context.Products.Find(productId);
+            var product = _context.Products.Find(productId);
+            if (product == null) {
+                throw new InvalidOperationException("product not found");
+            }
+
+            return product;
         }
 
         // TO DO: Add ‘Create’ for Products
