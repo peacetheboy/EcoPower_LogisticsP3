@@ -19,6 +19,17 @@ The aim of this project is to enhance and improve an existing ASP.NET Core MVC W
 
 - [ ] Create a repository
 - [ ] Create a README.md file that describes the project and how stakeholders should use the report.
+
+## Project Progress
+
+- [ ] Ensure that the solution is committed and pushed to source control throughout the project.
+- [ ] Update the GitHub project iteratively to demonstrate progress.
+
+## Project Setup
+
+- [ ] Access the existing project.
+- [ ] Fork the existing GitHub repository.
+- [ ] Create a new development branch.
       
 ### Implement Repository Classes
 
