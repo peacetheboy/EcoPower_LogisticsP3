@@ -10,6 +10,7 @@ namespace EcoPower_Logistics.Data
 {
     public partial class SuperStoreContext : DbContext
     {
+
         public SuperStoreContext()
         {
         }
