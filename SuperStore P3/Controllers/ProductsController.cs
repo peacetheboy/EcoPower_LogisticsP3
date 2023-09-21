@@ -17,6 +17,7 @@ namespace Controllers
     {
         private readonly SuperStoreContext _context;
 
+
         public ProductsController(SuperStoreContext context)
         {
             _context = context;
