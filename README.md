@@ -41,6 +41,8 @@ The aim of this project is to enhance and improve an existing ASP.NET Core MVC W
 - [ ] Add the connection string to your hosted database in the appsettings.json file.
 ![image](https://github.com/peacetheboy/EcoPower_LogisticsP3/assets/90477030/f9c22191-8709-4e7a-98d3-6de66ab87d54)
 
+# Design Pattern Implementation
+
 ### Create Repository Classes
 
 - [ ] Create a repository class for Orders data access operations.
@@ -70,8 +72,26 @@ The aim of this project is to enhance and improve an existing ASP.NET Core MVC W
 - [ ] Implement the use of the Customer repository class in the Orders controller in place of transferred data access operations.
 - [ ] Implement the use of the Products repository class in the Orders controller in place of transferred data access operations.
 
+## Project Close-out
+
+### Security
+
+- [ ] The project will be kept private and accessible to collaborators only.
+
+### Web API Cloud Hosting
+
+- [ ] Create an App Service (connected to an F1 tier (free) service plan).
+- [ ] Publish your App to the service hosted on Azure.
+- [ ] Ensure the App is secure and accessible.
+
+# Project links
+
+- [ ] https://ecopowersolutions36564567.azurewebsites.net/
 
 
 
 
-https://ecopowersolutions36564567.azurewebsites.net/
+
+
+
+
