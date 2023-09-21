@@ -23,7 +23,8 @@ The aim of this project is to enhance and improve an existing ASP.NET Core MVC W
 ### Implement Repository Classes
 
 - [ ] Implement the use of the Customer repository class in the Orders controller in place of transferred data access operations.
-      
+      ![repo](https://github.com/peacetheboy/EcoPower_LogisticsP3/assets/90477030/f2c81982-5d65-4583-a620-330821125ecd)
+
 - [ ] Implement the use of the Products repository class in the Orders controller in place of transferred data access operations.
 
 
