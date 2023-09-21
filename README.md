@@ -89,9 +89,21 @@ The aim of this project is to enhance and improve an existing ASP.NET Core MVC W
 - [ ] https://ecopowersolutions36564567.azurewebsites.net/
 
 
+## Reference List
 
+1. North-West University. (n.d.). "eFundi - Projects > Project 3 Resources." https://www.efundi.ac.za/
 
+2. Visual Studio. (n.d.). "Visual Studio 2022 Community edition."  https://visualstudio.microsoft.com/vs/community/
 
+3. Microsoft. (n.d.). ".NET 6 Documentation."  https://docs.microsoft.com/en-us/dotnet/
+
+4. Pressman, R. S. (2014). "Software Engineering: A Practitioner's Approach." McGraw-Hill Education.
+
+5. Sommerville, I. (2015). "Software Engineering." Pearson.
+
+6. Fowler, M. (2002). "Patterns of Enterprise Application Architecture." Addison-Wesley.
+
+7. Microsoft Docs. (n.d.). "ASP.NET Core MVC." https://docs.microsoft.com/en-us/aspnet/core/mvc/
 
 
 
