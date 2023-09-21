@@ -1,71 +1,62 @@
-﻿using Data;
-using Microsoft.EntityFrameworkCore;
-using Models;
-using EcoPower_Logistics.Data;
-using static EcoPower_Logistics.Reopository.ProductRepository;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace EcoPower_Logistics.Reopository
+namespace EcoPower_Logistics.Repository
 {
+    public class Product
+    {
+        public int ProductId { get; set; }
+        public string ProductDescription { get; set; } = null!;
+        public string ProductName { get; set; } = null!;
+    }
+
     public class ProductRepository
     {
-        protected readonly SuperStoreContext _context = new SuperStoreContext();
+        private List<Product> products;
 
-        // GET ALL: Products
-        public IEnumerable<Product> GetAll()
+        public ProductRepository()
         {
-            return _context.Products.ToList();
+            products = new List<Product>();
         }
 
-        // TO DO: Add ‘Get By Id’ for Products
-        public Product GetById(int productId)
+        public void AddProduct(Product product)
         {
-            var product = _context.Products.Find(productId);
-            if (product == null) {
-                throw new InvalidOperationException("product not found");
-            }
+            products.Add(product);
+        }
 
+        public Product GetProductById(int productId)
+        {
+            var product = products.FirstOrDefault(p => p.ProductId == productId);
+            if (product == null)
+            {
+                throw new InvalidOperationException("Product not found");
+            }
             return product;
         }
 
-        // TO DO: Add ‘Create’ for Products
-        public void Create(Product product)
+        public List<Product> GetAllProducts()
         {
-            if (product == null)
-            {
-                throw new ArgumentNullException(nameof(product));
-            }
-
-            _context.Products.Add(product);
-            _context.SaveChanges();
+            return products;
         }
 
-        // TO DO: Add ‘Edit’ for Products
-        public void Edit(Product product)
+        public void UpdateProduct(Product product)
         {
-            if (product == null)
+            var existingProduct = products.FirstOrDefault(p => p.ProductId == product.ProductId);
+            if (existingProduct != null)
             {
-                throw new ArgumentNullException(nameof(product));
+                existingProduct.ProductDescription = product.ProductDescription;
+                existingProduct.ProductName = product.ProductName;
             }
-
-            _context.Entry(product).State = EntityState.Modified;
-            _context.SaveChanges();
         }
 
-        // TO DO: Add ‘Delete’ for Products
-        public void Delete(int productId)
+        public void DeleteProduct(int productId)
         {
-            var product = _context.Products.Find(productId);
+            var product = products.FirstOrDefault(p => p.ProductId == productId);
             if (product != null)
             {
-                _context.Products.Remove(product);
-                _context.SaveChanges();
+                products.Remove(product);
             }
         }
-
-        public bool Exists(int productId)
-        {
-            return _context.Products.Any(p => p.ProductId == productId);
-        }
     }
-
 }
