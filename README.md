@@ -52,10 +52,24 @@ The aim of this project is to enhance and improve an existing ASP.NET Core MVC W
 
 ### Implement Repository Classes
 
-- [ ] Implement the use of the Customer repository class in the Orders controller in place of transferred data access operations.
-      
-
+- [ ] Implement the use of the Customer repository class in the Orders controller in place of transferred data access operations. 
 - [ ] Implement the use of the Products repository class in the Orders controller in place of transferred data access operations.
+
+![image](https://github.com/peacetheboy/EcoPower_LogisticsP3/assets/90477030/369eae48-75d2-429f-80cc-c6d70c509e96)
+
+### Transfer Data Access Operations
+
+- [ ] Transfer all data access operations from the Devices controller to the Orders Repository class.
+- [ ] Transfer all data access operations from the Zones controller to the Customers Repository class.
+- [ ] Transfer all data access operations from the Categories controller to the Products Repository class.
+
+![image](https://github.com/peacetheboy/EcoPower_LogisticsP3/assets/90477030/369eae48-75d2-429f-80cc-c6d70c509e96)
+
+### Implement Repository Classes
+
+- [ ] Implement the use of the Customer repository class in the Orders controller in place of transferred data access operations.
+- [ ] Implement the use of the Products repository class in the Orders controller in place of transferred data access operations.
+
 
 
 
