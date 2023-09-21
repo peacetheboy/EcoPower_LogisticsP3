@@ -30,7 +30,7 @@ namespace EcoPower_Logistics.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source = zaazrsqlcmpg323.database.windows.net; Initial Catalog = BasicAuth; User ID = cmpg323_sa; Password=b3JBzCX08xvUfYg196lM!;Connect Timeout = 30; Encrypt=True;Trust Server Certificate=True;Application Intent = ReadWrite; Multi Subnet Failover=False");
+                optionsBuilder.UseSqlServer("Data Source=zaazrsqlcmpg323.database.windows.net;Initial Catalog=BasicAuth;User ID=cmpg323_sa;Password=b3JBzCX08xvUfYg196lM!;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
             }
         }
         
