@@ -29,6 +29,7 @@ The aim of this project is to enhance and improve an existing ASP.NET Core MVC W
 
 - [ ] Access the existing project.
 - [ ] Fork the existing GitHub repository.
+![image](https://github.com/peacetheboy/EcoPower_LogisticsP3/assets/90477030/54492c8c-7680-45c7-93c1-b053ebda5b27)
 - [ ] Create a new development branch.
       
 ### Implement Repository Classes
