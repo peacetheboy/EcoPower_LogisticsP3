@@ -29,8 +29,19 @@ The aim of this project is to enhance and improve an existing ASP.NET Core MVC W
 
 - [ ] Access the existing project.
 - [ ] Fork the existing GitHub repository.
+
+      
 ![image](https://github.com/peacetheboy/EcoPower_LogisticsP3/assets/90477030/54492c8c-7680-45c7-93c1-b053ebda5b27)
+
 - [ ] Create a new development branch.
+
+      
+ ![image](https://github.com/peacetheboy/EcoPower_LogisticsP3/assets/90477030/991e607f-204b-48f0-9f8b-877e2766a2e8)
+
+### Connect the Web App to the Data Source
+
+- [ ] Add the connection string to your hosted database in the appsettings.json file.
+
       
 ### Implement Repository Classes
 
